@@ -25,6 +25,6 @@ public class Ex1 {
         System.out.println("name[1]="+name[1]);
         System.out.println("name[2]="+name[2]);
         System.out.println("name[3]="+name[3]);
-        System.out.println("name[4]="+name[4]); 
+        System.out.println("name[4]="+name[4]);
     }
 }
