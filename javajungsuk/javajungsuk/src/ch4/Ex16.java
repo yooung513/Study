@@ -41,6 +41,9 @@ public class Ex16 {
             num /= 10;
         }
         System.out.println("각 자리수의 합 : " + ans);
+        System.out.println();
 
+
+        // 예제 4. do-while문
     }
 }
