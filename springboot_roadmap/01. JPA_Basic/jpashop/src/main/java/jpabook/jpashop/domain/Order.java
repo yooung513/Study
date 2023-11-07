@@ -1,0 +1,58 @@
+package jpabook.jpashop.domain;
+
+import org.checkerframework.checker.units.qual.C;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "orders")
+public class Order {
+
+    @Id @GeneratedValue
+    @Column(name = "order_id")
+    private Long id;
+
+//    @Column(name = "member_id")       // 객체지향과 거리 존재 -> order_id타고 들어와서 member_id를 찾은 후
+//    private Long memberId;            // member를 또 찾아야 하므로 == 관계형 DB에 맞춘 설계 (데이터 중심 설계의 문제점)
+                                        // 연관관계 매핑이 필요함
+    private Member member;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    private LocalDateTime orderDate;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
+}
