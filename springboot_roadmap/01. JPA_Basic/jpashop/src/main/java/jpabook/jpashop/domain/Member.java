@@ -1,9 +1,9 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -11,10 +11,17 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+
     private String name;
+
     private String city;
+
     private String street;
+
     private String zipcode;
+
+    @OneToMany(mappedBy = "member")                 // 실제로는 관심사 설정을 끊어야하지만, 예제이므로 양방향 연관관계 설정
+    private List<Order> orders = new ArrayList<>();
 
 
     public Long getId() {
