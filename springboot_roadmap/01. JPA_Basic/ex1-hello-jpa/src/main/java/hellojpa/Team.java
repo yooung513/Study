@@ -11,6 +11,10 @@ public class Team {
     private Long id;
     private String name;
 
+
+    @OneToMany(mappedBy = "team")   // mappedBy : 매핑할 '변수 명'을 적어줌 (Team의 team)
+    private List<Member> members = new ArrayList<>();
+
     public List<Member> getMembers() {
         return members;
     }
@@ -19,16 +23,12 @@ public class Team {
         this.members = members;
     }
 
-    @OneToMany(mappedBy = "team")   // mappedBy : 매핑할 '변수 명'을 적어줌 (Team의 team)
-    private List<Member> members = new ArrayList<>();
-
     void addMember(Member member){
         member.setTeam(this);
         members.add(member);
     }
 
 
-    // getter and setter
     public Long getId() {
         return id;
     }

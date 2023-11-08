@@ -11,8 +11,13 @@ public class Item {
     @Id @GeneratedValue
     @Column(name = "item_id")
     private Long id;
+
     private String name;
+
     private int price;
+
+    private int stockQuantity;
+
 
 
     public Long getId() {
@@ -46,6 +51,4 @@ public class Item {
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
-
-    private int stockQuantity;
 }
