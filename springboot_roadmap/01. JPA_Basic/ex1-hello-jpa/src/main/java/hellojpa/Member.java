@@ -3,6 +3,8 @@ package hellojpa;
 import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(name = "테이블 이름")   // 테이블 이름이 다른 경우 이름 매핑
@@ -24,6 +26,9 @@ public class Member {
     @JoinColumn(name = "locker_id")
     private Locker locker;
 
+    @ManyToMany
+    @JoinTable(name = "member_product")     // 중간 테이블 명 작성
+    private List<Product> products = new ArrayList<>();
 
 
     public Long getId() {
