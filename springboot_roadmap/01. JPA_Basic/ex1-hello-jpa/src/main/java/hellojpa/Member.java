@@ -1,19 +1,27 @@
 package hellojpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.checkerframework.checker.units.qual.C;
+
+import javax.persistence.*;
 
 @Entity
 //@Table(name = "테이블 이름")   // 테이블 이름이 다른 경우 이름 매핑
 public class Member {
-    @Id
+    @Id @GeneratedValue
     private Long id;
 
-//    @Column(name = "컬럼 이름")   // 컬럼 이름이 다른 경우 컬럼 매핑
+    @Column(name = "USERNAME")   // 컬럼 이름이 다른 경우 컬럼 매핑
     private String name;
 
+//    @Column(name = "TEAM_ID")  // 테이블에 맞춘 설계로 객체지향적이지 않음
+//    private Long teamId;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")   // 객체지향적인 설계
+    private Team team;
+
+
+    // getter and setter
     public Long getId() {
         return id;
     }
@@ -29,4 +37,28 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public void changeTeam(Team team) {
+        this.team = team;
+        // 연관관계 편의 메소드
+        team.getMembers().add(this);
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Member{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", team=" + team +    // 이는 team의 toString() 호출 => 무한루프
+//                '}';
+//    }
 }
+
