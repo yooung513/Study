@@ -20,8 +20,12 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")   // 객체지향적인 설계
     private Team team;
 
+    @OneToOne
+    @JoinColumn(name = "locker_id")
+    private Locker locker;
 
-    // getter and setter
+
+
     public Long getId() {
         return id;
     }

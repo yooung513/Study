@@ -25,7 +25,7 @@ public class JpaMain_EX4 {
 
             team.getMembers().add(member);      // team에 설정을 했지만 member 쿼리도 같이 호출됨 -> 복잡성 증가
                                                 // 따라서 실무에서는 일대다 관계를 지양하고
-                                                // 다대일 양방향 매핑을 지향한다. 
+                                                // 다대일 양방향 매핑을 지향한다.
 
             tx.commit();
 
