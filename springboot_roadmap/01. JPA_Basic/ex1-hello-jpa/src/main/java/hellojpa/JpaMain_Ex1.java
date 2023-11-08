@@ -4,9 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
-public class JpaMain {
+public class JpaMain_Ex1 {
+
+    // JPA 기초
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
@@ -17,7 +18,7 @@ public class JpaMain {
         try {   // 오류 발생 상황을 대비해 try-catch 문법 활용 (정석 코드)
 
             // member 객체 생성
-//            Member member = new Member();
+            Member member = new Member();
 //            member.setId(2L);
 //            member.setName("HelloB");
 //
