@@ -12,19 +12,19 @@ import java.util.List;
 public class Member extends BaseEntity{
     @Id @GeneratedValue
     private Long id;
-    @Column(name = "USERNAME")   // 컬럼 이름이 다른 경우 컬럼 매핑
+    @Column(name = "username")   // 컬럼 이름이 다른 경우 컬럼 매핑
     private String name;
 //    @Column(name = "TEAM_ID")  // 테이블에 맞춘 설계로 객체지향적이지 않음
 //    private Long teamId;
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID")   // 객체지향적인 설계
+    @JoinColumn(name = "team_id", insertable = false, updatable = false)   // 객체지향적인 설계
     private Team team;
-    @OneToOne
-    @JoinColumn(name = "locker_id")
-    private Locker locker;
-    @ManyToMany
-    @JoinTable(name = "member_product")     // 중간 테이블 명 작성
-    private List<Product> products = new ArrayList<>();
+//    @OneToOne
+//    @JoinColumn(name = "locker_id")
+//    private Locker locker;
+//    @ManyToMany
+//    @JoinTable(name = "member_product")     // 중간 테이블 명 작성
+//    private List<Product> products = new ArrayList<>();
 
 
     public Long getId() {
