@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "TEAM_ID")
     private Long id;
@@ -15,10 +15,6 @@ public class Team {
     @OneToMany(mappedBy = "team")   // mappedBy : 매핑할 '변수 명'을 적어줌 (Team의 team)
     private List<Member> members = new ArrayList<>();
 
-    private String createBy;
-    private LocalDateTime createdDate;
-    private String lastModifiedBy;
-    private LocalDateTime lastModifiedDate;
 
 
     public List<Member> getMembers() {

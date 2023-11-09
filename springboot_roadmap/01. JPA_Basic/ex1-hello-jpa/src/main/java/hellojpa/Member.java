@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 //@Table(name = "테이블 이름")   // 테이블 이름이 다른 경우 이름 매핑
-public class Member {
+public class Member extends BaseEntity{
     @Id @GeneratedValue
     private Long id;
     @Column(name = "USERNAME")   // 컬럼 이름이 다른 경우 컬럼 매핑
@@ -25,10 +25,7 @@ public class Member {
     @ManyToMany
     @JoinTable(name = "member_product")     // 중간 테이블 명 작성
     private List<Product> products = new ArrayList<>();
-    private String createBy;
-    private LocalDateTime createdDate;
-    private String lastModifiedBy;
-    private LocalDateTime lastModifiedDate;
+
 
     public Long getId() {
         return id;

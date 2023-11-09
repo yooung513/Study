@@ -4,10 +4,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 
-public class JpaMain_EX5 {
+public class JpaMain_EX6 {
 
-    // 고급 매핑전략
+    // 고급 매핑 전략 - Mapped Superclass (매핑 정보 상속)
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -18,19 +19,11 @@ public class JpaMain_EX5 {
 
         try {
 
-            Movie movie = new Movie();
-            movie.setDirector("봉준호");
-            movie.setActor("송강호");
-            movie.setName("기생충");
-            movie.setPrice(10000);
+            Member member = new Member();
+            member.setName("user1");
+            member.setCreateBy("kim");
+            member.setCreatedDate(LocalDateTime.now());
 
-            em.persist(movie);
-
-            em.flush();
-            em.clear();
-
-            Movie findMovie = em.find(Movie.class, movie.getId());
-            System.out.println();
 
 
             tx.commit();
@@ -42,13 +35,5 @@ public class JpaMain_EX5 {
         }
 
         emf.close();
-    }
-
-    private static Member saveMember(EntityManager em) {
-        Member member = new Member();
-        member.setName("member1");
-
-        em.persist(member);
-        return member;
     }
 }
