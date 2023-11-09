@@ -16,8 +16,10 @@ public class Member extends BaseEntity{
     private String name;
 //    @Column(name = "TEAM_ID")  // 테이블에 맞춘 설계로 객체지향적이지 않음
 //    private Long teamId;
-    @ManyToOne
-    @JoinColumn(name = "team_id", insertable = false, updatable = false)   // 객체지향적인 설계
+
+    @ManyToOne(fetch = FetchType.EAGER) // 즉시로딩
+//    @ManyToOne(fetch = FetchType.LAZY)  // 지연로딩 => 해당 값을 프록시로 가지고 옴
+    @JoinColumn(name = "team_id")   // 객체지향적인 설계 // , insertable = false, updatable = false
     private Team team;
 //    @OneToOne
 //    @JoinColumn(name = "locker_id")
