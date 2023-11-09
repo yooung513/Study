@@ -7,11 +7,7 @@ import javax.persistence.Persistence;
 
 public class JpaMain_EX5 {
 
-<<<<<<< HEAD
     // 고급 매핑전략 - 상속관계 매핑
-=======
-    // 고급 매핑전략
->>>>>>> a25c70f1640cb7d2a87936854dcb0bc7746adbfd
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
