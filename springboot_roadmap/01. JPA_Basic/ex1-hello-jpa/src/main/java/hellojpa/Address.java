@@ -27,23 +27,23 @@ public class Address {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+//    public void setCity(String city) {    // Setter 값을 지우는 순간 값을 참조할 수 없음
+//        this.city = city;                 // -> 불변 객체
+//    }
 
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
+//    public void setStreet(String street) {
+//        this.street = street;
+//    }
 
     public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
-        zipCode = zipCode;
-    }
+//    public void setZipCode(String zipCode) {
+//        zipCode = zipCode;
+//    }
 }
