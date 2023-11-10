@@ -1,17 +1,16 @@
-package jpabook.jpashop;
-
-import jpabook.jpashop.domain.Book;
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+package hellojpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 
-public class JpaMain {
+public class JpaMain_EX6 {
+
+    // 고급 매핑 전략 - Mapped Superclass (매핑 정보 상속)
     public static void main(String[] args) {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -20,14 +19,16 @@ public class JpaMain {
 
         try {
 
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
+            Member member = new Member();
+            member.setName("user1");
+            member.setCreateBy("kim");
+            member.setCreatedDate(LocalDateTime.now());
 
-            em.persist(book);
+
 
             tx.commit();
-        } catch (Exception e){
+
+        } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close();
