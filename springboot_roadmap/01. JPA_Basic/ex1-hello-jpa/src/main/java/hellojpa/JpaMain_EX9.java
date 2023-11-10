@@ -55,7 +55,7 @@ public class JpaMain_EX8 {
 
             tx.commit();
 
-        } catch (Exception e) {
+        } catch (Exception e) pu
             System.out.println("e = " + e);    // 에러 메세지 출력
             tx.rollback();
         } finally {
