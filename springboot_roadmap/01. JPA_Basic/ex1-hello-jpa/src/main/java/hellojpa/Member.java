@@ -29,6 +29,39 @@ public class Member extends BaseEntity{
 //    @JoinTable(name = "member_product")     // 중간 테이블 명 작성
 //    private List<Product> products = new ArrayList<>();
 
+    @Embedded                   // 임베디드 타입
+    private Period workPeriod;
+
+    @Embedded
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city",
+                               column = @Column(name = "work_city")),
+            @AttributeOverride(name = "street",
+                               column = @Column(name = "work_street")),
+            @AttributeOverride(name = "zipCode",
+                               column = @Column(name = "work_zipcode"))
+    })
+    private Address workAddress;
+
+
+    public Period getWorkPeriod() {
+        return workPeriod;
+    }
+
+    public void setWorkPeriod(Period workPeriod) {
+        this.workPeriod = workPeriod;
+    }
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
 
     public Long getId() {
         return id;
