@@ -46,7 +46,7 @@ public class JpaMain_EX8 {
             System.out.println("findMem = " + findMem.getTeam().getClass());
 
 
-            // 즉시로딩 사용 시 문제점 : JPQL에서 N+1 문제 발생 
+            // 즉시로딩 사용 시 문제점 : JPQL에서 N+1 문제 발생
             // member2 query가 나가고, 즉시로딩에 의해 team을 조회하는 쿼리또한 같이 나가게 됨
             // SQL : select * from member2
             // SQL : select * from team1 where team_id = ?       => 즉시로딩을 지양해야하는 이유

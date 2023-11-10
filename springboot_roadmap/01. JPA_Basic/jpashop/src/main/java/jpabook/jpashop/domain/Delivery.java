@@ -4,6 +4,8 @@ import jdk.jfr.Enabled;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 public class Delivery extends BaseEntity  {
 
@@ -13,7 +15,7 @@ public class Delivery extends BaseEntity  {
     private String street;
     private String zipcode;
     private DeliveryStatus status;
-    @OneToOne
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
     private Order order;
 
 
