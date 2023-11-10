@@ -12,6 +12,7 @@ import java.util.List;
 public class Member extends BaseEntity{
     @Id @GeneratedValue
     private Long id;
+
     @Column(name = "username")   // 컬럼 이름이 다른 경우 컬럼 매핑
     private String name;
 //    @Column(name = "TEAM_ID")  // 테이블에 맞춘 설계로 객체지향적이지 않음
@@ -69,4 +70,3 @@ public class Member extends BaseEntity{
 //                '}';
 //    }
 }
-
