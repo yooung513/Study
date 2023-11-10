@@ -41,7 +41,7 @@ public class JpaMain_EX11 {
             member3.setHomeAddress(copyAddress);
             em.persist(member3);
 
-            
+
             // 불변 객체의 값을 바꾸는 방법 -> 새로 생성해서 값 할당
             Address newCity = new Address("newCity", address.getStreet(), address.getZipCode());
             Member member4 = new Member();
