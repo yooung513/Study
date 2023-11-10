@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity {
@@ -15,17 +17,17 @@ public class Order extends BaseEntity {
 //    @Column(name = "member_id")       // 객체지향과 거리 존재 -> order_id타고 들어와서 member_id를 찾은 후
 //    private Long memberId;            // member를 또 찾아야 하므로 == 관계형 DB에 맞춘 설계 (데이터 중심 설계의 문제점)
 //                                      // 연관관계 매핑이 필요함
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")     // 연관관계 매핑
     private Member member;
-    @OneToOne
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();
     private LocalDateTime orderDate;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
 
 
 
