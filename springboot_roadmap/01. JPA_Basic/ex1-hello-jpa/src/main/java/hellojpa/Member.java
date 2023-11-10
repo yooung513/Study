@@ -5,7 +5,11 @@ import org.checkerframework.checker.units.qual.C;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 //@Table(name = "테이블 이름")   // 테이블 이름이 다른 경우 이름 매핑
@@ -34,6 +38,23 @@ public class Member extends BaseEntity{
 
     @Embedded
     private Address homeAddress;
+
+    @ElementCollection
+    @CollectionTable(name = "favorite_food",
+                    joinColumns = @JoinColumn(name = "member_id")       // 외래키로 생성
+    )
+    @Column(name = "food_name")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "address",
+                    joinColumns = @JoinColumn(name = "member_id")
+    )
+    private List<Address> addressList = new ArrayList<>();      // 값 타입 컬렉션 매핑
+
+    @OneToMany(cascade = ALL, orphanRemoval = true)
+    @JoinColumn(name = "member_id")
+    private List<AddressEntity> addressHistory = new ArrayList<>(); // 값 타입 컬렉션의 대안 (일대다 매핑)
 
     @Embedded
     @AttributeOverrides({
@@ -86,6 +107,38 @@ public class Member extends BaseEntity{
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
+    }
+
+    public Address getWorkAddress() {
+        return workAddress;
+    }
+
+    public void setWorkAddress(Address workAddress) {
+        this.workAddress = workAddress;
+    }
+
+    public List<AddressEntity> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<AddressEntity> addressHistory) {
+        this.addressHistory = addressHistory;
     }
 
     public void changeTeam(Team team) {
