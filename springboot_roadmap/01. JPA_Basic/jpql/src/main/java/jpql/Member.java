@@ -39,4 +39,14 @@ public class Member {
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+//                ", team=" + team + => toString에서 양방향 매핑은 지워줄 것
+                '}';
+    }
 }

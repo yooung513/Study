@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 public class JpaMain {
-    // JPQL - 기본 문법과 쿼리 API
+    // 기본 문법과 쿼리 API
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
