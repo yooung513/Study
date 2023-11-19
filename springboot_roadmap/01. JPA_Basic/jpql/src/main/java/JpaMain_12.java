@@ -5,10 +5,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.Collection;
 import java.util.List;
 
-public class JpaMain_11 {
+public class JpaMain_12 {
     // 페치 조인 2 - 한계
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -60,7 +59,7 @@ public class JpaMain_11 {
             // 한계 3_해결 1. 다대일로 연관관계 방향을 바꿔서 문제를 해결한다.
             String query3 = "select m from Member m join fetch m.team t";
 
-            // 한계 3_해결 2. LAZY 조회로 쿼리를 여러번 호출한다. (성능 저하 존재)
+            // 한계 3_해결 2. @BatchSize 사용
             String query4 = "select t From team t";
             List<Team> result2 = em.createQuery(query4, Team.class)
                     .setFirstResult(0)
@@ -68,7 +67,10 @@ public class JpaMain_11 {
                     .getResultList();
 
             for (Team team : result2) {
-                System.out.println("team = " + team.getName() + );
+                System.out.println("team = " + team.getName() + ", members = " + team.getMembers().size());
+                for (Member member : team.getMembers()) {
+                    System.out.println("-> member = " + member);
+                }
             }
 
             tx.commit();
