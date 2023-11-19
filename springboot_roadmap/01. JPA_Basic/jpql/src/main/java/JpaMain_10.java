@@ -39,7 +39,8 @@ public class JpaMain_10 {
             String query2 = "select m.team.member from Member m";       // 단일 값 연관 경로 (묵시적 내부 조인 발생, 탐색 가능)
             String query3 = "select t.members from Team t";             // 컬렉션 값 연관 경로 (묵시적 내부 조인 발생, 탐색 불가)
             String query4 = "select t.members.size from Team t";
-            String query5 = "select m from Team t join t.members m";    // 3의 탐색을 가능하게 하기 위해 join 사용
+            String query5 = "select m.username from Team t join t.members m";    // 3의 탐색을 가능하게 하기 위해 join 사용
+                                                                                 // 즉, 컬렉션 값 연관 경로에 명시적 조인
 
             List<String> result1 = em.createQuery(query1, String.class)
                     .getResultList();
@@ -54,9 +55,12 @@ public class JpaMain_10 {
                 System.out.println("o = " + o);
             }
 
+
             Integer result4 = em.createQuery(query4, Integer.class)
                     .getSingleResult();
             System.out.println("result4 = " + result4);
+
+
 
 
             tx.commit();
