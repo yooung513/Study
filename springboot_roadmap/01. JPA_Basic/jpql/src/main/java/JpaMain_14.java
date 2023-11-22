@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class JpaMain_14 {
-    // 엔티티 직접 사용
+    // Named 쿼리
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
@@ -43,28 +43,13 @@ public class JpaMain_14 {
             em.flush();
             em.clear();
 
-
-            String query1 = "select m from Member m where m = :member";
-            String query2 = "select m from Member m where m.id = :memberId";
-            String query3 = "select m from Member m where m.team = :teamId";
-
-            Member findMember = em.createQuery(query1, Member.class)
-                    .setParameter("member", member1)
-                    .getSingleResult();
-            System.out.println("findMember = " + findMember);
-
-            Member findMemberId = em.createQuery(query2, Member.class)
-                    .setParameter("memberId", member1.getId())
-                    .getSingleResult();
-            System.out.println("findMemberId = " + findMemberId);
-
-            List<Member> Memebers = em.createQuery(query3, Member.class)
-                    .setParameter("teamId", teamA)
+            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "회원1")
                     .getResultList();
-            for (Member memeber : Memebers) {
-                System.out.println("memeber = " + memeber);
-            }
 
+            for (Member member : resultList) {
+                System.out.println("member = " + member);
+            }
 
             tx.commit();
         } catch (Exception e) {
