@@ -108,6 +108,7 @@ public class BasicController {
     }
 
 
+    // 리터럴
     @GetMapping("/literal")
     public String literal(Model model) {
 
@@ -117,7 +118,14 @@ public class BasicController {
     }
 
 
+    // 연산
+    @GetMapping("/operation")
+    public String operation(Model model) {
 
+        model.addAttribute("null", null);
+        model.addAttribute("data", "Spring!");
 
+        return "basic/operation";
+    }
 
 }
