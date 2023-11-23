@@ -56,6 +56,18 @@ public class BasicController {
         return "basic/variable";
     }
 
+    @Data
+    static class User{
+
+        private String username;
+        private int age;
+
+        public User(String username, int age) {
+            this.username = username;
+            this.age = age;
+        }
+    }
+
 
     // 기본 객체들
     @GetMapping("/basic-objects")
@@ -64,6 +76,14 @@ public class BasicController {
         session.setAttribute("sessionData", "Hello Session!");
 
         return "basic/basic-objects";
+    }
+
+
+    @Component("helloBean")
+    static class HelloBean {
+        public String hello(String data) {
+            return "Hello " + data;
+        }
     }
 
 
@@ -87,23 +107,17 @@ public class BasicController {
         return "basic/link";
     }
 
-    @Data
-    static class User{
 
-        private String username;
-        private int age;
+    @GetMapping("/literal")
+    public String literal(Model model) {
 
-        public User(String username, int age) {
-            this.username = username;
-            this.age = age;
-        }
+        model.addAttribute("data", "Spring!");
+
+        return "basic/literal";
     }
 
-    @Component("helloBean")
-    static class HelloBean {
-        public String hello(String data) {
-            return "Hello " + data;
-        }
-    }
+
+
+
 
 }
