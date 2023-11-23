@@ -6,7 +6,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
-
 public class JpaMain_14 {
     // Named 쿼리
     public static void main(String[] args) {
