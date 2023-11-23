@@ -57,7 +57,7 @@ public class BasicController {
     }
 
     @Data
-    static class User{
+    static class User {
 
         private String username;
         private int age;
@@ -128,4 +128,10 @@ public class BasicController {
         return "basic/operation";
     }
 
+
+    // 속성 값 설정
+    @GetMapping("/attribute")
+    public String attribute() {
+        return "basic/attribute";
+    }
 }
