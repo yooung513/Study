@@ -144,6 +144,16 @@ public class BasicController {
     }
 
 
+    // 블록
+    @GetMapping("/block")
+    public String block(Model model) {
+
+        addUser(model);
+
+        return "basic/block";
+    }
+
+
 
     @Data
     static class User {
