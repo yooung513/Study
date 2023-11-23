@@ -136,6 +136,14 @@ public class BasicController {
     }
 
 
+    // 주석
+    @GetMapping("/comments")
+    public String comments(Model model){
+        model.addAttribute("data", "Spring!");
+        return "basic/comments";
+    }
+
+
 
     @Data
     static class User {
