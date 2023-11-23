@@ -126,6 +126,15 @@ public class BasicController {
     }
 
 
+    // 조건부 평가
+    @GetMapping("/condition")
+    public String condition(Model model) {
+
+        addUser(model);
+
+        return "basic/condition";
+    }
+
 
 
     @Data
