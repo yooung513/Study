@@ -56,18 +56,6 @@ public class BasicController {
         return "basic/variable";
     }
 
-    @Data
-    static class User {
-
-        private String username;
-        private int age;
-
-        public User(String username, int age) {
-            this.username = username;
-            this.age = age;
-        }
-    }
-
 
     // 기본 객체들
     @GetMapping("/basic-objects")
@@ -76,14 +64,6 @@ public class BasicController {
         session.setAttribute("sessionData", "Hello Session!");
 
         return "basic/basic-objects";
-    }
-
-
-    @Component("helloBean")
-    static class HelloBean {
-        public String hello(String data) {
-            return "Hello " + data;
-        }
     }
 
 
@@ -133,5 +113,47 @@ public class BasicController {
     @GetMapping("/attribute")
     public String attribute() {
         return "basic/attribute";
+    }
+
+
+    // 반복
+    @GetMapping("/each")
+    public String each(Model model) {
+
+        addUser(model);
+
+        return "basic/each";
+    }
+
+
+
+
+    @Data
+    static class User {
+
+        private String username;
+
+        private int age;
+        public User(String username, int age) {
+            this.username = username;
+            this.age = age;
+        }
+
+    }
+    private void addUser(Model model) {
+        List<User> list = new ArrayList<>();
+
+        list.add(new User("UserA", 10));
+        list.add(new User("UserB", 20));
+        list.add(new User("UserC", 30));
+
+        model.addAttribute("users", list);
+    }
+
+    @Component("helloBean")
+    static class HelloBean {
+        public String hello(String data) {
+            return "Hello " + data;
+        }
     }
 }
