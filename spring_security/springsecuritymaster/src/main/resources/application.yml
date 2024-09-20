@@ -1,0 +1,9 @@
+#spring.application.name=springsecuritymaster
+
+# 사용자 추가 설정 방법 1
+spring:
+  security:
+    user:
+      name: user
+      password: 1111
+      roles: USER
