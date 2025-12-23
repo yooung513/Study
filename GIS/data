@@ -1,0 +1,9 @@
+https://overpass-turbo.eu/
+
+area["ISO3166-1"="KR"]->.searchArea;
+
+(
+  way["power"="line"](area.searchArea);
+  node["power"="substation"](area.searchArea);
+);
+out geom;
